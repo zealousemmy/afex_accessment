@@ -4,12 +4,7 @@ import FormReg from "../../../universalComponent/formComponent";
 import { loginFields, companyInfo } from "../../../util/formFields/corporate";
 import { corporateSchema } from "../../../universalComponent/schema/corporateSchema";
 import { useRouter } from "next/router";
-import Manager from "../../../encryption";
 const CorporateComp = () => {
-  const manager = new Manager({
-    key: process.env.KEY,
-    vector: process.env.VECTOR,
-  });
   const [form, setForm] = useState({});
   const router = useRouter();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
