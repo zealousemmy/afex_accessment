@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import FormReg from "../../../universalComponent/formComponent";
 import { loginDetailsSchema } from "../../../universalComponent/schema/corporateSchema";
 import { loginFields, companyInfo } from "../../../util/formFields/corporate";
+import dotenv from "dotenv";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
+import crypto from "crypto";
 const LoginDetailComp = () => {
   const router = useRouter();
   const [form, setForm] = useState({});
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    console.log(name);
-    console.log(value);
-    console.log(form);
   };
   const handleNext = async (e: any) => {
     e.preventDefault();
@@ -28,8 +27,27 @@ const LoginDetailComp = () => {
       //   console.log(historyArr);
       const newHistoryArr = { ...historyArr, ...form };
       //   console.log(newHistoryArr.email);
+      for (let x in newHistoryArr) {
+        const algorithm = "aes-256-cbc";
+
+        const generateByte = "hA7wB3e4v87ihj6R";
+        const securityKeyGen = "uEKBcN7kMKayW6SF8d0BtaJq60Musbp0";
+
+        const cipher = crypto.createCipheriv(
+          algorithm,
+          securityKeyGen,
+          generateByte
+        );
+        let doneEncrypt = Buffer.concat([
+          cipher.update(newHistoryArr[x]),
+          cipher.final(),
+        ]).toString("base64");
+        newHistoryArr[x] = doneEncrypt;
+      }
+      console.log(newHistoryArr);
       const otpmail = { email: newHistoryArr.email };
       console.log(otpmail);
+      window.sessionStorage.setItem("optMail", JSON.stringify(otpmail));
       window.sessionStorage.setItem("key", JSON.stringify(newHistoryArr));
       let axiosConfig = {
         headers: {

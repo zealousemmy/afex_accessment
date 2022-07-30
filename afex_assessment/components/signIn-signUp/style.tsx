@@ -10,11 +10,13 @@ export const DivContainer = styled.div`
     /* font-weight: 400; */
     font-size: 30px;
     line-height: 35.16px;
+    margin: 0;
   }
   p {
     /* font-weight: 400; */
     font-size: 14px;
     line-height: 21px;
+    margin: 0;
   }
   button {
     border: none;

@@ -5,6 +5,8 @@ import Link from "next/link";
 interface Props {
   formTitle: string;
   handle?: React.MouseEventHandler;
+  handleResend?: React.MouseEventHandler;
+  otp?: boolean;
   handlechange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   subTitle: string;
   selectCategory: boolean;
@@ -22,15 +24,23 @@ interface Props {
     }[];
   }[];
   NextPrevBtn?: boolean;
+  nextPrevSided?: boolean;
+  nextBtn?: string;
+  link?: any;
 }
 const FormReg = ({
   handle,
+  handleResend,
   formTitle,
   subTitle,
   formInputs,
   selectCategory,
   handlechange,
   NextPrevBtn,
+  nextPrevSided,
+  nextBtn,
+  link,
+  otp,
 }: Props) => {
   const router = useRouter();
   return (
@@ -108,7 +118,23 @@ const FormReg = ({
           )}
         </>
       ))}
-      {NextPrevBtn === true ? (
+      {otp === true ? (
+        <button className="otp" onClick={handleResend}>
+          resend otp
+        </button>
+      ) : (
+        <></>
+      )}
+      {nextPrevSided === true ? (
+        <div className="sidedButton">
+          <Link href={link}>
+            <a className="backBtn">Back</a>
+          </Link>
+          <button className="btnRed sideBtn" onClick={handle}>
+            {nextBtn}
+          </button>
+        </div>
+      ) : NextPrevBtn === true ? (
         <div className="nextPrevBtn">
           <button className="signinBtn">Sign in</button>
           <Link href="/">
