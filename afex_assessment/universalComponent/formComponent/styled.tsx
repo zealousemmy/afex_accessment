@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const FormContainer = styled.div`
   background-color: #ffffff;
-  width: 30%;
+  width: 35%;
   padding: 20px;
   margin: auto;
   display: flex;
@@ -11,16 +11,21 @@ export const FormContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: purple;
+    /* background-color: purple; */
+    width: 100%;
     .selector {
       display: flex;
       width: 40%;
       align-items: center;
-      justify-content: space-around;
+      input {
+        margin-right: 0.5rem;
+      }
+      /* justify-content: space-between; */
     }
     .btnForgot {
       margin-top: 1rem;
-      width: 30%;
+      width: 60%;
+      text-align: right;
     }
   }
   .nextPrevBtn {
@@ -75,14 +80,42 @@ export const FormContainer = styled.div`
     margin: 1rem 0;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    /* background-color: blue; */
     .inputLabel {
       /* background-color: gold; */
       width: 45%;
       input {
         width: 90%;
       }
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
+    }
+  }
+  .otp {
+    color: #98a9bccc;
+    border: none;
+    width: 30%;
+    margin: auto;
+    background-color: transparent;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+  .sidedButton {
+    /* background-color: blue; */
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-between;
+    margin-top: 8rem;
+
+    .sideBtn {
+      margin: 0;
+      text-align: right;
+      font-weight: 500;
+      font-size: 14px;
+      /* width: inherit; */
     }
   }
   .singleInput {
@@ -114,5 +147,11 @@ export const FormContainer = styled.div`
     text-align: center;
     width: 50%;
     cursor: pointer;
+  }
+  @media screen and (max-width: 900px) {
+    width: 60%;
+  }
+  @media screen and (max-width: 500px) {
+    width: 90%;
   }
 `;
